@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="stop()">暂停</button>
+    <button onclick="restart()">开始</button>
+    <script src="./src/AsyncLoop.js"></script>
+    <script>
+        let ms = 2000;
+        let asyncMs = 1000;
+
+        var num = [1,2,3,4];
+
+        function timeoutFn(asyncMs) {
+            // 模拟异步函数
+            setTimeout(function(){
+                console.log('函数执行' + new Date().getSeconds())
+                set.request();
+            }, asyncMs)
+        }
+
+        var set = new AsyncLoop();
+
+        set.init(() => {
+            timeoutFn(asyncMs);
+        }, ms, 'diff');
+
+        // 初始化判断条件
+        set.initJudge(function() {
+            return num.length > 2;
+        });
+
+        set.request(0);
+
+        set.restart();
+
+        function stop() {
+            console.log('暂停了');
+            set.stop();
+        }
+        function restart() {
+            console.log('开始了');
+            set.restart();
+        }
+    </script>
+    
+</body>
+</html>
