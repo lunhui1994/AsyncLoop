@@ -1,4 +1,4 @@
-#说明
+# 说明
 
 1. index.html 中即为使用用例。推荐测试
 
@@ -23,10 +23,11 @@
 
 ## Api
 
-### init 
+### 1. init 
 
 > init 初始化 loopFn， cycleTime， mode(可选)
 
+#### 语法：
 
 ` myInterval.init(loopFn, cycleTime [, mode]) `
 
@@ -100,11 +101,11 @@ myInterval.init(async () => {
 
 > **rfn########** 为异步函数执行；**500ms##########** 为基准周期；
 
-### request 
+### 2. request 
 
 > 主功能函数, 相当于调用一次循环;需要写在异步函数尾部,具体看init的使用方式。
 
-
+#### 语法：
 ` myInterval.request([time]) `
 
 #### 使用
@@ -115,9 +116,15 @@ myInterval.init(async () => {
 
 > 会在time时间后调用异步函数，如缺省则使用初始化时的循环周期。
 
-### initJudge
+### 3. initJudge
 
 > **initJudge** 初始化前置条件函数，默认为**null**，当其返回结果为**true**时进入主函数，否则不执行**loopFn**直接进入下一次循环。
+
+#### 语法
+
+` myInterval.initJudge(JudgeFn);`
+
+#### 使用
 
 ```
 let list = [1, 2, 3];
@@ -130,6 +137,7 @@ myInterval.initJudge(function() {
 
 > **start** 开始循环
 
+#### 使用
 ```
 myInterval.start();
 
@@ -139,6 +147,7 @@ myInterval.start();
 
 > **stop** 停止循环
 
+#### 使用
 ```
 myInterval.stop();
 ```
@@ -147,6 +156,7 @@ myInterval.stop();
 
 > **restart** 重启循环。
 
+#### 使用
 ```
 myInterval.restart();
 ```
