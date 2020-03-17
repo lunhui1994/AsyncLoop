@@ -16,16 +16,23 @@
 //init 初始化 loopFn， cycleTime， mode(可选)
 
 AsyncLoop.prototype.init = function (loopFn, cycleTime, mode) {
-    this._config.loopFn = loopFn;
-    this._config.cycleTime = cycleTime;
-    this._config._mode = mode === 'diff' ? mode : 'sum';
-    this._config._enabled = true;
-    this._config._handler && clearTimeout(this._config._handler);
+    let _self_config = this._config;
+
+    _self_config.loopFn = loopFn;
+    _self_config.cycleTime = cycleTime;
+    _self_config._mode = mode === 'diff' ? mode : 'sum';
+    _self_config._enabled = true;
+    _self_config._handler && clearTimeout(_self_config._handler);
 }
 
 //initJudge 初始化前置条件函数(可选)
 
 AsyncLoop.prototype.initJudge = function (preLoopJudgeFn) {
+    
+    if (Object.prototype.toString.call(preLoopJudgeFn) !== "[object Function]") {
+        return this.preLoopFn = null;
+    }
+
     this.preLoopFn = function () {
         if (Boolean(preLoopJudgeFn())) {
             return true;
@@ -42,40 +49,48 @@ AsyncLoop.prototype.restart = function () {
     this._config._enabled = true;
     this.request(0);
 }
+//restart 重新开始
+AsyncLoop.prototype.start = function () {
+    this._config._enabled = true;
+    this.request(0);
+}
 //_getDiffTime 内部函数 计算diff模式下的循环时间
 AsyncLoop.prototype._getDiffTime = function () {
-    this._config.duration = new Date().getTime() - (this._config.start || new Date().getTime());
-    this._config.diffCycleTime = (this._config.duration >= this._config.cycleTime) ? 0 : (this._config.cycleTime - this._config.duration);
+    let _self_config = this._config;
+    if (_self_config._mode  !== 'diff') {return 0}
+    _self_config.duration = new Date().getTime() - (_self_config.start || new Date().getTime());
+    _self_config.diffCycleTime = (_self_config.duration >= _self_config.cycleTime) ? 0 : (_self_config.cycleTime - _self_config.duration);
 }
 
 //request 发起循环
 AsyncLoop.prototype.request = function (time) {
-
+    let _self = this;
+    let _self_config = this._config;
     // diff 
-    if (this._config._mode === "diff") {
+    if (_self_config._mode === "diff") {
         this._getDiffTime()
     }
     // request(time)指定的时间优先级最高
-    let cycleTime = time === undefined ? (this._config._mode === "diff" ? this._config.diffCycleTime : this._config.cycleTime) : time;
+    let cycleTime = time === undefined ? (_self_config._mode === "diff" ? _self_config.diffCycleTime : _self_config.cycleTime) : time;
 
     // 清除
-    this._config._handler && clearTimeout(this._config._handler);
+    _self_config._handler && clearTimeout(_self_config._handler);
     
     // 定时器
-    this._config._handler = setTimeout(() => {
+    _self_config._handler = setTimeout(() => {
 
         // 前置条件判断
-        if (this.preLoopFn && !this.preLoopFn()) {
-            return this.request();
+        if (_self.preLoopFn && !_self.preLoopFn()) {
+            return _self.request();
         }
         // 暂停判断
-        if (!this._config._enabled) { return }
+        if (!_self_config._enabled) { return }
 
         // 获取函数执行开始时间
-        this._config.start = new Date().getTime();
+        _self_config.start = new Date().getTime();
         
         // 执行主函数
-        this._config.loopFn && this._config.loopFn();
+        _self_config.loopFn && _self_config.loopFn();
 
     }, cycleTime);
 }

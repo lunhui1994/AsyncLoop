@@ -13,35 +13,36 @@
         let ms = 2000;
         let asyncMs = 1000;
 
-        var num = [1,2,3,4];
-
         function timeoutFn(asyncMs) {
             // 模拟异步函数
-            setTimeout(function(){
-                console.log('函数执行' + new Date().getSeconds())
-                set.request();
-            }, asyncMs)
+            return new Promise((resolve => {
+                    setTimeout(function(){
+                        console.log('函数执行' + new Date().getSeconds())
+                        resolve();
+                    }, asyncMs)
+                }))
         }
 
         var set = new AsyncLoop();
 
-        set.init(() => {
-            timeoutFn(asyncMs);
+        set.init(async () => {
+            await timeoutFn(asyncMs);
+            set.request();
         }, ms, 'diff');
 
         // 初始化判断条件
+        var list = [1,2,3,4];
         set.initJudge(function() {
-            return num.length > 2;
+            return list.length > 2;
         });
 
-        set.request(0);
-
-        set.restart();
+        set.start();
 
         function stop() {
             console.log('暂停了');
             set.stop();
         }
+
         function restart() {
             console.log('开始了');
             set.restart();
