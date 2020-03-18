@@ -1,4 +1,18 @@
-# 说明
+## 使用
+
+1. npm 
+
+` npm i async-loop-timer`
+
+2. github
+
+下载该项目，将lib中的代码复制到你的项目中。引用index.js即可
+
+3. script
+
+script标签链入src中的AsyncLoop.js 即可。
+
+## 说明
 
 1. index.html 中即为使用用例。推荐测试
 
