@@ -1,0 +1,17 @@
+{
+  "name": "async-loop-timer",
+  "version": "1.0.0",
+  "description": "async Fn loop , Prevent event accumulation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "async",
+    "loop",
+    "refresh",
+    "timer"
+  ],
+  "author": "eighteen Z",
+  "license": "ISC"
+}
