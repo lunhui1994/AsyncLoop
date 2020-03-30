@@ -49,7 +49,7 @@ AsyncLoop.prototype.restart = function () {
     this._config._enabled = true;
     this.request(0);
 }
-//restart 重新开始
+//restart 开始
 AsyncLoop.prototype.start = function () {
     this._config._enabled = true;
     this.request(0);
@@ -58,7 +58,7 @@ AsyncLoop.prototype.start = function () {
 AsyncLoop.prototype._getDiffTime = function () {
     let _self_config = this._config;
     if (_self_config._mode  !== 'diff') {return 0}
-    _self_config.duration = new Date().getTime() - (_self_config.start || new Date().getTime());
+    _self_config.duration = Date.now() - (_self_config.start || Date.now());
     _self_config.diffCycleTime = (_self_config.duration >= _self_config.cycleTime) ? 0 : (_self_config.cycleTime - _self_config.duration);
 }
 
@@ -87,7 +87,7 @@ AsyncLoop.prototype.request = function (time) {
         if (!_self_config._enabled) { return }
 
         // 获取函数执行开始时间
-        _self_config.start = new Date().getTime();
+        _self_config.start = Date.now();
         
         // 执行主函数
         _self_config.loopFn && _self_config.loopFn();

@@ -1,8 +1,18 @@
-# 说明
+## 使用
 
-[github 地址]('https://github.com/lunhui1994/async-loop-timer')
+1. npm 
 
-` npm install async-loop-timer `
+    ` npm i async-loop-timer`
+
+2. github
+
+    下载该项目，将lib中的代码复制到你的项目中。引用index.js即可
+
+3. script
+
+    script标签链入src中的AsyncLoop.js 即可。
+
+## 说明
 
 1. github中 index.html 中即为使用用例。推荐测试
 
@@ -139,7 +149,7 @@ myInterval.initJudge(function() {
         });
 ```
 
-### start
+### 4. start
 
 > **start** 开始循环
 
@@ -149,7 +159,7 @@ myInterval.start();
 
 ```
 
-### stop
+### 5. stop
 
 > **stop** 停止循环
 
@@ -158,7 +168,7 @@ myInterval.start();
 myInterval.stop();
 ```
 
-### restart
+### 6. restart
 
 > **restart** 重启循环。
 
