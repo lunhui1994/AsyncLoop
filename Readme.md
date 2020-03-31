@@ -1,3 +1,8 @@
+
+[github: async-loop-timer](https://github.com/lunhui1994/async-loop-timer)
+
+[npm: async-loop-timer](https://www.npmjs.com/package/async-loop-timer)
+
 ## 使用
 
 1. npm 
@@ -42,6 +47,8 @@
 ### 1. init 
 
 > init 初始化 loopFn， cycleTime， mode(可选)
+
+> 可通过 init 重新初始化实例内容
 
 #### 语法：
 
@@ -116,6 +123,7 @@ myInterval.init(async () => {
         500ms##########500ms##########500ms##########------------500ms##########500ms##########
 
 > **rfn########** 为异步函数执行；**500ms##########** 为基准周期；
+
 
 ### 2. request 
 
