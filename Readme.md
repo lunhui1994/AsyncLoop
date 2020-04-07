@@ -11,7 +11,14 @@
 
 2. github
 
-    下载该项目，将lib中的代码复制到你的项目中。引用index.js即可
+    下载该项目，将lib中的代码复制到你的项目中。 ~~引用index.js即可~~
+
+    可以通过不同的方式引入dist中的不同输出文件.
+
+    index.js -> umd 通用方式
+    index.es.js -> es (export/import)
+    index.cjs.js -> commonjs
+    index.amd.js -> amd
 
 3. script
 
