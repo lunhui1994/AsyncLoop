@@ -15,10 +15,10 @@
 
     可以通过不同的方式引入dist中的不同输出文件.
 
-    index.js -> umd
-    index.es.js -> es (export/import)
-    index.cjs.js -> commonjs
-    index.amd.js -> amd
+    1. index.js -> umd 通用方式
+    2. index.es.js -> es (export/import)
+    3. index.cjs.js -> commonjs
+    4. index.amd.js -> amd
 
 3. script
 
