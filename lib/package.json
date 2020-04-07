@@ -1,6 +1,6 @@
 {
   "name": "async-loop-timer",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "async Fn loop , Prevent event accumulation, u can use UMD(index.js), AMD(index.amd.js), ES(index.es.js), CommonJS(index.cjs.js)",
   "main": "index.js",
   "scripts": {

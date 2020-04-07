@@ -13,7 +13,7 @@
 
     下载该项目，将lib中的代码复制到你的项目中。 ~~引用index.js即可~~
 
-    可以通过不同的方式引入dist中的不同输出文件.
+    可以通过不同的方式引入不同输出文件.
 
     1. index.js -> umd 通用方式
     2. index.es.js -> es (export/import)
